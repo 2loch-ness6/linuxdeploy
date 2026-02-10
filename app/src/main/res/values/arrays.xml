@@ -285,14 +285,13 @@
         <item>stable</item>
         <item>testing</item>
         <item>unstable</item>
-        <item>jessie</item>
-        <item>stretch</item>
-        <item>buster</item>
+        <item>bullseye</item>
+        <item>bookworm</item>
+        <item>trixie</item>
     </string-array>
     <string-array name="debian_arch_values" translatable="false">
-        <item>armel</item>
         <item>armhf</item>
-        <item>arm64</item> <!-- jessie and later -->
+        <item>arm64</item>
         <item>i386</item>
         <item>amd64</item>
     </string-array>
@@ -300,15 +299,13 @@
     <!-- Ubuntu -->
 
     <string-array name="ubuntu_suite_values" translatable="false">
-        <item>precise</item>
-        <item>trusty</item>
-        <item>xenial</item>
-        <item>bionic</item>
+        <item>focal</item>
+        <item>jammy</item>
+        <item>noble</item>
     </string-array>
     <string-array name="ubuntu_arch_values" translatable="false">
-        <item>armel</item> <!-- precise only -->
         <item>armhf</item>
-        <item>arm64</item> <!-- trusty and later -->
+        <item>arm64</item>
         <item>i386</item>
         <item>amd64</item>
     </string-array>
@@ -319,7 +316,6 @@
         <item>kali-rolling</item>
     </string-array>
     <string-array name="kali_arch_values" translatable="false">
-        <item>armel</item>
         <item>armhf</item>
         <item>arm64</item>
         <item>i386</item>
@@ -329,11 +325,12 @@
     <!-- Fedora -->
 
     <string-array name="fedora_suite_values" translatable="false">
-        <item>30</item>
+        <item>40</item>
+        <item>41</item>
     </string-array>
     <string-array name="fedora_arch_values" translatable="false">
-        <item>armhfp</item> <!-- f19 and later -->
-        <item>aarch64</item> <!-- f21 and later -->
+        <item>armhfp</item>
+        <item>aarch64</item>
         <item>i386</item>
         <item>x86_64</item>
     </string-array>
@@ -341,7 +338,7 @@
     <!-- CentOS -->
 
     <string-array name="centos_suite_values" translatable="false">
-        <item>7</item>
+        <item>9-stream</item>
     </string-array>
     <string-array name="centos_arch_values" translatable="false">
         <item>armhfp</item>
@@ -367,7 +364,7 @@
     <!-- Slackware -->
 
     <string-array name="slackware_suite_values" translatable="false">
-        <item>14.2</item>
+        <item>15.0</item>
     </string-array>
     <string-array name="slackware_arch_values" translatable="false">
         <item>arm</item>
@@ -380,6 +377,7 @@
     <string-array name="alpine_suite_values" translatable="false">
         <item>latest-stable</item>
         <item>edge</item>
+        <item>v3.20</item>
     </string-array>
     <string-array name="alpine_arch_values" translatable="false">
         <item>armv7</item>

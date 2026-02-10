@@ -4,8 +4,10 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Point;
+import android.os.Build;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.view.Display;
@@ -13,6 +15,7 @@ import android.view.WindowManager;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.TaskStackBuilder;
+import androidx.core.content.ContextCompat;
 
 import java.io.File;
 import java.net.Inet4Address;
@@ -613,7 +616,7 @@ public class PrefStore {
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
-        config.locale = locale;
+        config.setLocale(locale);
         c.getResources().updateConfiguration(config, c.getResources().getDisplayMetrics());
     }
 
@@ -774,7 +777,7 @@ public class PrefStore {
                 Intent stealthReceive = new Intent();
                 stealthReceive.setAction("ru.meefik.linuxdeploy.BROADCAST_ACTION");
                 stealthReceive.putExtra("show", true);
-                PendingIntent pendingIntentStealth = PendingIntent.getBroadcast(context, 2, stealthReceive, PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent pendingIntentStealth = PendingIntent.getBroadcast(context, 2, stealthReceive, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
                 notificationBuilder.setContentIntent(pendingIntentStealth);
             } else {
                 Intent resultIntent = intent;
@@ -782,24 +785,28 @@ public class PrefStore {
                 TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
                 stackBuilder.addParentStack(MainActivity.class);
                 stackBuilder.addNextIntent(resultIntent);
-                PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
                 notificationBuilder.setContentIntent(resultPendingIntent);
 
                 Intent startReceive = new Intent();
                 startReceive.setAction("ru.meefik.linuxdeploy.BROADCAST_ACTION");
                 startReceive.putExtra("start", true);
-                PendingIntent pendingIntentStart = PendingIntent.getBroadcast(context, 3, startReceive, PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent pendingIntentStart = PendingIntent.getBroadcast(context, 3, startReceive, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
                 notificationBuilder.addAction(R.drawable.ic_play_arrow_24dp, context.getString(R.string.menu_start), pendingIntentStart);
 
                 Intent stopReceive = new Intent();
                 stopReceive.setAction("ru.meefik.linuxdeploy.BROADCAST_ACTION");
                 stopReceive.putExtra("stop", true);
-                PendingIntent pendingIntentStop = PendingIntent.getBroadcast(context, 4, stopReceive, PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent pendingIntentStop = PendingIntent.getBroadcast(context, 4, stopReceive, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
                 notificationBuilder.addAction(R.drawable.ic_stop_24dp, context.getString(R.string.menu_stop), pendingIntentStop);
             }
             notificationBuilder.setOngoing(true);
             notificationBuilder.setWhen(0);
-            notificationManager.notify(NOTIFY_ID, notificationBuilder.build());
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
+                    ContextCompat.checkSelfPermission(context, android.Manifest.permission.POST_NOTIFICATIONS)
+                            == PackageManager.PERMISSION_GRANTED) {
+                notificationManager.notify(NOTIFY_ID, notificationBuilder.build());
+            }
         } else {
             notificationManager.cancel(NOTIFY_ID);
         }
