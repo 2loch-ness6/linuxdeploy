@@ -4,8 +4,10 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Point;
+import android.os.Build;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.view.Display;
@@ -13,6 +15,7 @@ import android.view.WindowManager;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.TaskStackBuilder;
+import androidx.core.content.ContextCompat;
 
 import java.io.File;
 import java.net.Inet4Address;
@@ -799,7 +802,11 @@ public class PrefStore {
             }
             notificationBuilder.setOngoing(true);
             notificationBuilder.setWhen(0);
-            notificationManager.notify(NOTIFY_ID, notificationBuilder.build());
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
+                    ContextCompat.checkSelfPermission(context, android.Manifest.permission.POST_NOTIFICATIONS)
+                            == PackageManager.PERMISSION_GRANTED) {
+                notificationManager.notify(NOTIFY_ID, notificationBuilder.build());
+            }
         } else {
             notificationManager.cancel(NOTIFY_ID);
         }

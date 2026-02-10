@@ -306,6 +306,7 @@
     <string-array name="ubuntu_arch_values" translatable="false">
         <item>armhf</item>
         <item>arm64</item>
+        <item>i386</item>
         <item>amd64</item>
     </string-array>
 
@@ -330,6 +331,7 @@
     <string-array name="fedora_arch_values" translatable="false">
         <item>armhfp</item>
         <item>aarch64</item>
+        <item>i386</item>
         <item>x86_64</item>
     </string-array>
 
@@ -339,7 +341,9 @@
         <item>9-stream</item>
     </string-array>
     <string-array name="centos_arch_values" translatable="false">
+        <item>armhfp</item>
         <item>aarch64</item>
+        <item>i386</item>
         <item>x86_64</item>
     </string-array>
 
