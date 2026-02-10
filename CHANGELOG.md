@@ -6,6 +6,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.7.0] - 2025-02-10
+### Changed
+- Updated target SDK to Android 14 (API 34)
+- Updated Gradle build system (AGP 7.4.2, Gradle 7.5.1)
+- Replaced deprecated jcenter() repository with mavenCentral()
+- Updated all AndroidX and Material dependencies to latest stable versions
+- Updated Debian default suite from buster to bookworm, added bullseye and trixie
+- Updated Ubuntu suites to focal, jammy, noble (removed EOL precise, trusty, xenial, bionic)
+- Updated Fedora from 30 to 40/41
+- Updated CentOS from 7 to 9-stream with new mirror URL
+- Updated Slackware from 14.2 to 15.0
+- Added Alpine Linux v3.20 suite option
+- Updated Docker default image from Ubuntu 18.04 to 24.04
+- Upgraded all distribution mirror URLs from HTTP to HTTPS
+- Updated repository URL to HTTPS
+- Added PendingIntent FLAG_IMMUTABLE for Android 12+ compatibility
+- Added POST_NOTIFICATIONS permission for Android 13+
+- Added FOREGROUND_SERVICE permission for modern Android
+- Removed deprecated armel architecture from Debian, Ubuntu, and Kali
+- Removed obsolete i386 architecture from Fedora, CentOS, and Ubuntu
+- Updated copyright year to 2025
+- Updated forum link from HTTP to HTTPS
+
 ## [2.6.0] - 2020-02-01
 ### Changed
 - Set target version of SDK to 28 for binary execution in Android Q

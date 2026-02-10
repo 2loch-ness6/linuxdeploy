@@ -25,10 +25,12 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/title_activity_main"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:exported="true" />
 
         <activity-alias
             android:name=".Launcher"
+            android:exported="true"
             android:targetActivity=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -613,7 +613,7 @@ public class PrefStore {
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
-        config.locale = locale;
+        config.setLocale(locale);
         c.getResources().updateConfiguration(config, c.getResources().getDisplayMetrics());
     }
 
